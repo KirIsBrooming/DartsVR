@@ -1,1 +1,1 @@
-# vr-darts
+# VRDarts
