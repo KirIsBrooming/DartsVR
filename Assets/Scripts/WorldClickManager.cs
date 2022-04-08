@@ -4,32 +4,31 @@ using UnityEngine;
 
 public class WorldClickManager : MonoBehaviour
 {
-    void Update()
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] public Transform worldCursorPosition;
+
+    private void Update()
     {
-        WorldClick();
+        CursorCheck();
     }
 
-    [SerializeField] Vector3 clickPosition;
-    [SerializeField] RaycastHit hit;
-    [SerializeField] Ray worldRay;
-
-    public void WorldClick()
+    public void CursorCheck()
     {
         if (!Input.GetMouseButtonDown(0))
         {
             return;
         }
 
-        worldRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray cameraToMouseRay = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (!Physics.Raycast(worldRay.origin, hit.point))
+        if (!Physics.Raycast(cameraToMouseRay, out RaycastHit c2mrHit))
         {
             return;
         }
 
-        clickPosition = hit.point;
+        transform.position = c2mrHit.point;
 
-        Debug.Log(clickPosition);
+        Debug.Log(c2mrHit.collider.gameObject.name);
     }
 }
 
