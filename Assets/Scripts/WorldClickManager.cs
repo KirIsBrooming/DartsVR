@@ -6,6 +6,7 @@ public class WorldClickManager : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
     [SerializeField] public Transform worldCursorPosition;
+    //Kirill Noob
 
     private void Update()
     {
