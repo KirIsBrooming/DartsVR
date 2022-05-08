@@ -24,7 +24,7 @@ public class DartBehavior : MonoBehaviour
             return;
         }
 
-        Physics.Raycast(dartRayCastOrigin.transform.position, dartRayCastEnd.transform.position, out RaycastHit dartHit);
+        Physics.Raycast(dartRayCastOrigin.transform.position, dartRayCastEnd.transform.position, out RaycastHit dartHit, dartLayerMask);
             
         if(!dartHit.collider)
         {
