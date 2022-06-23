@@ -15,36 +15,36 @@ public class DartBehavior : MonoBehaviour
     void Update()
     {
         DartRaycast();
-        DartStop();
     }
     public void DartRaycast()
     {
-        if (DartHitSmth)
-        {
-            return;
-        }
-
         Physics.Raycast(dartRayCastOrigin.transform.position, dartRayCastEnd.transform.position, out RaycastHit dartHit, dartLayerMask);
-            
         if(!dartHit.collider)
         {
+            DartHitSmth = false;
+            DartMove();
             return;
         }
 
-        DartHitSmth = true;
+        else if (dartHit.collider)
+        {
+            DartHitSmth = true;
+            DartStop();
+        }
         Debug.Log(dartHit.collider.gameObject.name);
    }
 
     public void DartStop()
     {
-        if (!DartHitSmth)
-        {
-            return;
-        }
-
         dartRb.useGravity = false;
         dartRb.isKinematic = true;
         dartRb.velocity = new Vector3(0, 0, 0);
         tipCollider.enabled = false;
+    }
+    public void DartMove()
+    {
+        dartRb.useGravity = true;
+        dartRb.isKinematic = false;
+        tipCollider.enabled = true;
     }
 }

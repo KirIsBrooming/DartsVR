@@ -28,6 +28,7 @@ public class DartPlaceManager : MonoBehaviour
             return;
         }
 
+        Debug.Log("Plane Click Registered");
         dartPosition.transform.position = c2mrHit.point;
         Instantiate(dartPrefab, dartPosition.transform.position, transform.rotation * Quaternion.Euler(90f, 0f, 0f));
     }
